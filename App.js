@@ -1,11 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import { View, StyleSheet, StatusBar } from 'react-native';
+import XylophoneKey from './components/XylophoneKey';
+import { NOTES } from './constants/notes';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <StatusBar barStyle="light-content" />
+      <View style={styles.keysContainer}>
+        {NOTES.map((note, index) => (
+          <XylophoneKey
+            key={index}
+            label={note.label}
+            soundFile={note.soundFile}
+            colors={note.colors}
+          />
+        ))}
+      </View>
     </View>
   );
 }
@@ -13,8 +24,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#0a0a0a',
+    // paddingTop: 40,
+    // paddingBottom: 20,
+    // paddingHorizontal: 12,
+  },
+  keysContainer: {
+    flex: 1,
+    gap: 0,
   },
 });
